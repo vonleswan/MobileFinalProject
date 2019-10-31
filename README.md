@@ -4,11 +4,11 @@ Final project for CST2335
 I have gone ahead and set up a homepage with images that point to your respective activity.
 
 # Usage
-Pull this repo into android studios
+  *Create a branch for yourself
 
-Create a branch for yourself
+  *Pull this repo into android studios
 
-There is two files you must edit:
+  *There is two files you must edit:
   
   If you're in charge of charging stations: 
     
