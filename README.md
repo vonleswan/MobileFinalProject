@@ -10,6 +10,8 @@ I have gone ahead and set up a homepage with images that point to your respectiv
 
   *There is two files you must edit:
   
+  
+  
   If you're in charge of charging stations: 
     
     StationsActivity.java
