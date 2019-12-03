@@ -16,9 +16,18 @@
         android:background="?attr/colorPrimary"
         app:layout_constrainedHeight="true"/>
 
-    <TextView
+    <FrameLayout
+        android:id="@+id/fragmentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="YO YOU CAN SEE ME?!"/>
+        android:background="#3F51B5"
+        android:visibility="invisible"
+        android:layout_gravity="bottom"
+        android:max="20"/>
 
 </LinearLayout>

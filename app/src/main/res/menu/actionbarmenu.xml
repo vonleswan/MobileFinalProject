@@ -4,24 +4,28 @@
     android:layout_width="match_parent"
     style="@style/HeaderBar">
 
-    <!-- News -->
-    <item android:id="@+id/action_news"
-        android:title="@string/news"
+    <item
+        android:id="@+id/action_search"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="always"
+        android:title="Search"/>
+
+    <!-- Toast -->
+    <item android:id="@+id/action_toast"
+        android:title="@string/toast"
+        android:icon="@drawable/toast"
         app:showAsAction="always"/>
 
-    <!-- Recipes -->
-    <item android:id="@+id/action_recipes"
-        android:title="@string/recipes"
+    <item android:id="@+id/action_snackbar"
+        android:title="Snack"
+        android:icon="@drawable/snack"
         app:showAsAction="always"/>
 
-    <!-- Currency -->
-    <item android:id="@+id/action_currencies"
-            android:title="@string/currencies"
-            app:showAsAction="always"/>
 
-    <!-- Station Finder -->
-    <item android:id="@+id/action_stations"
-        android:title="@string/stations"
+    <!-- Saved Articles-->
+    <item android:id="@+id/action_saved"
+        android:title="@string/Saved"
         app:showAsAction="always"/>
+
 
 </menu>

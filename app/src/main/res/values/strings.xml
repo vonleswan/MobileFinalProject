@@ -4,4 +4,7 @@
     <string name="currencies">Currencies</string>
     <string name="recipes">Recipes</string>
     <string name="stations">Stations</string>
+    <string name="Feed">Feed</string>
+    <string name="Saved">Saved</string>
+    <string name="toast">Toast</string>
 </resources>
