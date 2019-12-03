@@ -15,6 +15,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.mobilefinalproject.news.FeedListFragment;
 import com.example.mobilefinalproject.news.SavedFragment;
+import com.google.android.material.snackbar.Snackbar;
+
 
 public class NewsActivity extends AppCompatActivity{
     private String query = "bitcoin";
@@ -69,11 +71,11 @@ public class NewsActivity extends AppCompatActivity{
                         .commit(); //actually load the fragment.
                 break;
 
-            /*case R.id.action_snackbar:
+            case R.id.action_snackbar:
                 Snackbar sb = Snackbar.make(findViewById(R.id.toolbar), "Go Back?", Snackbar.LENGTH_LONG)
                         .setAction("Exit", e -> finish());
                 sb.show();
-                break;*/
+                break;
 
 
             default:

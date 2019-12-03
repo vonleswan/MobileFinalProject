@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MobileFinalProject</string>
+    <string name="news">Nouvelles</string>
+    <string name="currencies">Devise</string>
+    <string name="recipes">Recettes</string>
+    <string name="stations">Stations</string>
+    <string name="Feed">Nourrir</string>
+    <string name="Saved">Enregistré</string>
+    <string name="toast">Pain grillé</string>
+    <string name="Snack">Goûter</string>
+    <string name="search">Chercher</string>
+    <string name="description">Description</string>
+    <string name="open">Ouvrir</string>
+    <string name="save">Sauver</string>
+    <string name="title">Titre</string>
+    <string name="typesearch">Tapez la recherche ici</string>
+</resources>

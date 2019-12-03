@@ -8,7 +8,7 @@
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="always"
-        android:title="Search"/>
+        android:title="@string/search"/>
 
     <!-- Toast -->
     <item android:id="@+id/action_toast"
@@ -17,7 +17,7 @@
         app:showAsAction="always"/>
 
     <item android:id="@+id/action_snackbar"
-        android:title="Snack"
+        android:title="@string/Snack"
         android:icon="@drawable/snack"
         app:showAsAction="always"/>
 

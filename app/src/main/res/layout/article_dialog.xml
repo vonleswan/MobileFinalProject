@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/dialog_image"
         android:textSize="35sp"
-        android:text="title"
+        android:text="@string/description"
         android:layout_centerHorizontal="true"/>
     <TextView
         android:id="@+id/dialog_description"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/dialog_title"
         android:textSize="20sp"
-        android:text="description"
+        android:text="@string/description"
         android:layout_centerHorizontal="true"/>
 
     <LinearLayout
@@ -40,12 +40,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="save" />
+            android:text="@string/save" />
 
         <Button
             android:id="@+id/dialog_browse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Open"/>
+            android:text="@string/open"/>
     </LinearLayout>
 </RelativeLayout>
