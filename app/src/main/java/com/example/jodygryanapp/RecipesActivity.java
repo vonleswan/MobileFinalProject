@@ -1,9 +1,7 @@
-package com.example.mobilefinalproject;
+package com.example.jodygryanapp;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
 
 public class RecipesActivity extends AppCompatActivity{
 

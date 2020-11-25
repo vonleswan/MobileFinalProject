@@ -1,4 +1,4 @@
-package com.example.mobilefinalproject;
+package com.example.jodygryanapp;
 
 import org.junit.Test;
 

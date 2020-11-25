@@ -1,4 +1,4 @@
-package com.example.mobilefinalproject.news;
+package com.example.jodygryanapp.news;
 
 import android.graphics.Bitmap;
 

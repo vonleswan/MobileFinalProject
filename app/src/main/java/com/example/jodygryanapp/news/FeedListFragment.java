@@ -1,13 +1,11 @@
-package com.example.mobilefinalproject.news;
+package com.example.jodygryanapp.news;
 
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,33 +14,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
-import android.database.sqlite.SQLiteDatabase;
 
 import androidx.fragment.app.ListFragment;
 
-import com.example.mobilefinalproject.R;
-import android.database.sqlite.SQLiteDatabase;
+import com.example.jodygryanapp.R;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
 public class FeedListFragment extends ListFragment implements AdapterView.OnItemClickListener {
     private String query;
-    private String search = "https://newsapi.org/v2/everything?apiKey=70847466c09145fdb4ddcfa6085bff32&q=";
+    private String search = "https://jodygryan.com/wp-json/wp/v2/posts";
     private FeedListAdapter adapter;
     private ProgressBar progressBar;
     private DataBaseHelper dataBaseHelper;

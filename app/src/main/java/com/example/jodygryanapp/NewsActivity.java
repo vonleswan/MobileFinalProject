@@ -1,4 +1,4 @@
-package com.example.mobilefinalproject;
+package com.example.jodygryanapp;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,13 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.mobilefinalproject.news.FeedListFragment;
-import com.example.mobilefinalproject.news.SavedFragment;
+import com.example.jodygryanapp.news.FeedListFragment;
+import com.example.jodygryanapp.news.SavedFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 
 public class NewsActivity extends AppCompatActivity{
-    private String query = "bitcoin";
+    private String query = "";
     private FeedListFragment feedFrag;
 
 

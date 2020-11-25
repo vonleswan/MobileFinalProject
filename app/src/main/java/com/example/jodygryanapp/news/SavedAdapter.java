@@ -1,4 +1,4 @@
-package com.example.mobilefinalproject.news;
+package com.example.jodygryanapp.news;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,7 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mobilefinalproject.R;
+import com.example.jodygryanapp.R;
 
 import java.util.ArrayList;
 

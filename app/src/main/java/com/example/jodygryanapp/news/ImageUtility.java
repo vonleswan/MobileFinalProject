@@ -1,4 +1,4 @@
-package com.example.mobilefinalproject.news;
+package com.example.jodygryanapp.news;
 
 import android.app.Activity;
 import android.content.Context;

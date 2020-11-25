@@ -1,4 +1,4 @@
-package com.example.mobilefinalproject.news;
+package com.example.jodygryanapp.news;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
 import android.net.Uri;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -15,7 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mobilefinalproject.R;
+import com.example.jodygryanapp.R;
 
 public class ArticleDialog{
     private SQLiteDatabase db;
