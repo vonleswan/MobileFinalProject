@@ -43,7 +43,7 @@ public class ImageUtility {
             int responseCode = connection.getResponseCode();
             if (responseCode == 200) {
                 image = BitmapFactory.decodeStream(connection.getInputStream());
-                //saveImage(fname, image);
+                saveImage(fname, image);
             }
         }catch (MalformedURLException mfe){
             Log.d("DownloadException", "Malformed URL exception");

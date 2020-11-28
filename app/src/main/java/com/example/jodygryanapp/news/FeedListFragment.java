@@ -32,8 +32,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class FeedListFragment extends ListFragment implements AdapterView.OnItemClickListener {
-    private String query;
-    private String search = "https://jodygryan.com/wp-json/wp/v2/posts";
+    private String search = "https://jodygryan.com/wp-json/wp/v2/posts?_embed";
     private FeedListAdapter adapter;
     private ProgressBar progressBar;
     private DataBaseHelper dataBaseHelper;
@@ -52,9 +51,7 @@ public class FeedListFragment extends ListFragment implements AdapterView.OnItem
         super.onActivityCreated(savedInstanceState);
         activity = getActivity();
         SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
-        query = sharedPref.contains("lastQuery") ?
-                sharedPref.getString("lastQuery", "") : "bitcoin";
-        adapter = new FeedListAdapter(getContext(),new ArrayList<Article>());
+        adapter = new FeedListAdapter(getContext(),new ArrayList<>());
         setListAdapter(adapter);
         progressBar = activity.findViewById(R.id.progress);
         progressBar.setProgress(0);
@@ -63,7 +60,7 @@ public class FeedListFragment extends ListFragment implements AdapterView.OnItem
         //init Database
         dataBaseHelper = new DataBaseHelper(activity);
         db = dataBaseHelper.getWritableDatabase();
-        new Requests().execute(search+query);
+        new Requests().execute(search);
     }
 
     @Override
@@ -72,14 +69,9 @@ public class FeedListFragment extends ListFragment implements AdapterView.OnItem
     }
 
     public void updateList(String in){
-        this.query = in.trim();
-        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("lastQuery", query);
-        editor.apply();
-        this.adapter = new FeedListAdapter(getContext(), new ArrayList<Article>());
+        this.adapter = new FeedListAdapter(getContext(), new ArrayList<>());
         setListAdapter(adapter);
-        new Requests().execute(search+query);
+        new Requests().execute(search);
     }
 
     private void notifyChange(){
@@ -112,8 +104,8 @@ public class FeedListFragment extends ListFragment implements AdapterView.OnItem
                 while ((line = reader.readLine()) != null) {
                     sb.append(line + "\n");
                 }
-                String result = sb.toString();
-                buildArticles(new JSONObject(result));
+                JSONArray result = new JSONArray(sb.toString());
+                buildArticles(result);
                 ret = "article build successful";
             }catch (IOException | JSONException e){
                 e.printStackTrace();
@@ -133,32 +125,34 @@ public class FeedListFragment extends ListFragment implements AdapterView.OnItem
         }
 
 
-        public void buildArticles(JSONObject jObject){
+        public void buildArticles(JSONArray jArr){
             String author, title, description, url, urlToImage;
+            String filename = "Jody RyanWhile";
             Bitmap image;
-            ArrayList<Article> articles = new ArrayList<>();
             ArrayList<String> titles = new ArrayList<>(); //Contains loaded titles for duplicate checking
             try {
-                JSONArray arr = jObject.getJSONArray("articles");
-                int lenArr = arr.length();
+                int  lenArr = jArr.length();
                 for(int i=0; i<lenArr;i++){
-                    JSONObject article = arr.getJSONObject(i);
-                    title = article.getString("title");
+                    JSONObject jObject = jArr.getJSONObject(i);
+                    title = jObject.getJSONObject("title").getString("rendered");
                     if(titles.contains(title)) continue; // Skips building article if duplicate
-                    author = article.getString("author");
-                    description = article.getString("description");
-                    url = article.getString("url");
-                    urlToImage = article.getString("urlToImage");
-
+                    author ="Jody Ryan";
+                    description = jObject.getJSONObject("content").getString("rendered");
+                    url = jObject.getString("link");
+                    JSONObject embedded = jObject.getJSONObject("_embedded");
+                    urlToImage = embedded.has("wp:featuredmedia") ?
+                                 embedded.getJSONArray("wp:featuredmedia").getJSONObject(0).getString("source_url") :
+                                 null;
                     //  Image handling
                     ImageUtility imageUtility = new ImageUtility(activity);
-                    String fname = (author + title.substring(0,5)).replaceAll("/","");
-                    image = imageUtility.fileExists(fname) ?
-                            imageUtility.grabImage(fname) :
-                            imageUtility.downloadImage(fname,urlToImage);
+                    // if no featured media than use the last image downloaded
+                    filename = urlToImage != null ? (author + title.substring(0,5)).replaceAll("/","") : filename;
+                    image = imageUtility.fileExists(filename) ?
+                            imageUtility.grabImage(filename) :
+                            imageUtility.downloadImage(filename, urlToImage);
                     if(image != null) {
                         titles.add(title);
-                        if (!imageUtility.fileExists(fname)) imageUtility.saveImage(fname, image);
+                        if (!imageUtility.fileExists(filename)) imageUtility.saveImage(filename, image);
                         adapter.getArticles().add(new Article(title, author, description, url, urlToImage, image));
                     }
                     publishProgress(i*10);
