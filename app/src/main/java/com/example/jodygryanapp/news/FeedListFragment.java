@@ -143,17 +143,20 @@ public class FeedListFragment extends ListFragment implements AdapterView.OnItem
                     urlToImage = embedded.has("wp:featuredmedia") ?
                                  embedded.getJSONArray("wp:featuredmedia").getJSONObject(0).getString("source_url") :
                                  null;
-                    //  Image handling
-                    ImageUtility imageUtility = new ImageUtility(activity);
-                    // if no featured media than use the last image downloaded
-                    filename = urlToImage != null ? (author + title.substring(0,5)).replaceAll("/","") : filename;
-                    image = imageUtility.fileExists(filename) ?
-                            imageUtility.grabImage(filename) :
-                            imageUtility.downloadImage(filename, urlToImage);
-                    if(image != null) {
-                        titles.add(title);
+                    if(urlToImage != null) {
+                        //  Image handling
+                        ImageUtility imageUtility = new ImageUtility(activity);
+                        // if no featured media than use the last image downloaded
+                        filename = urlToImage != null ? (author + title.substring(0,5)).replaceAll("/","") : filename;
+                        image = imageUtility.fileExists(filename) ?
+                                imageUtility.grabImage(filename) :
+                                imageUtility.downloadImage(filename, urlToImage);
                         if (!imageUtility.fileExists(filename)) imageUtility.saveImage(filename, image);
+                        titles.add(title);
                         adapter.getArticles().add(new Article(title, author, description, url, urlToImage, image));
+                    } else {
+                        titles.add(title);
+                        adapter.getArticles().add(new Article(title, author, description, url));
                     }
                     publishProgress(i*10);
                 }

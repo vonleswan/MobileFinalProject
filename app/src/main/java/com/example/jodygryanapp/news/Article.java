@@ -16,6 +16,13 @@ public class Article {
         this.image = image;
     }
 
+    public Article(String title, String author, String description, String url){
+        this.title = title;
+        this.author = author;
+        this.description = description;
+        this.url = url;
+    }
+
     public String getAuthor() {
         return author;
     }
