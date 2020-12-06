@@ -1,13 +1,15 @@
 package com.example.jodygryanapp.news;
 
 import android.graphics.Bitmap;
+import android.text.Spanned;
 
 public class Article {
-    private String author, title, description, url, urlToImage;
+    private String author, title, url, urlToImage;
+    private Spanned description;
     private Bitmap image;
     private long id;
 
-    public Article(String title, String author, String description, String url, String urlToImage, Bitmap image){
+    public Article(String title, String author, Spanned description, String url, String urlToImage, Bitmap image){
         this.title = title;
         this.author = author;
         this.description = description;
@@ -16,7 +18,7 @@ public class Article {
         this.image = image;
     }
 
-    public Article(String title, String author, String description, String url){
+    public Article(String title, String author, Spanned description, String url){
         this.title = title;
         this.author = author;
         this.description = description;
@@ -39,11 +41,11 @@ public class Article {
         this.title = title;
     }
 
-    public String getDescription() {
+    public Spanned getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(Spanned description) {
         this.description = description;
     }
 

@@ -17,9 +17,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.jodygryanapp.CurrencyActivity" />
-        <activity android:name="com.example.jodygryanapp.StationsActivity" />
-        <activity android:name="com.example.jodygryanapp.RecipesActivity" />
     </application>
 
 </manifest>

@@ -38,21 +38,14 @@ public class ArticleDialog{
         image.setImageBitmap(article.getImage());
 
         Button saveButton = dialog.findViewById(R.id.dialog_save);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                insertArticle(article);
-                dialog.dismiss();
-            }
+        saveButton.setOnClickListener(v -> {
+            insertArticle(article);
+            dialog.dismiss();
         });
         Button openButton = dialog.findViewById(R.id.dialog_browse);
-        openButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                activity1.startActivity(
-                        new Intent(Intent.ACTION_VIEW,
-                                Uri.parse(search)));}
-            });
+        openButton.setOnClickListener(v -> activity1.startActivity(
+                new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(search))));
 
         dialog.show();
     }
@@ -67,7 +60,7 @@ public class ArticleDialog{
         ContentValues cv = new ContentValues();
         cv.put(DataBaseHelper.COL_TITLE, article.getTitle());
         cv.put(DataBaseHelper.COL_AUTHOR, article.getAuthor());
-        cv.put(DataBaseHelper.COL_DESCRIPTION, article.getDescription());
+        cv.put(DataBaseHelper.COL_DESCRIPTION, article.getDescription().toString());
         cv.put(DataBaseHelper.COL_URL, article.getUrl());
         cv.put(DataBaseHelper.COL_URLTOIMAGE, article.getUrlToImage());
         article.setId(db.insert(DataBaseHelper.TABLE_NAME, null, cv));

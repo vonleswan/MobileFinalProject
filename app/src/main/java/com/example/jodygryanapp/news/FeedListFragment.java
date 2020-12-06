@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -126,7 +127,11 @@ public class FeedListFragment extends ListFragment implements AdapterView.OnItem
 
 
         public void buildArticles(JSONArray jArr){
-            String author, title, description, url, urlToImage;
+            String author;
+            String title;
+            Spanned description;
+            String url;
+            String urlToImage;
             String filename = "Jody RyanWhile";
             Bitmap image;
             ArrayList<String> titles = new ArrayList<>(); //Contains loaded titles for duplicate checking
@@ -137,7 +142,7 @@ public class FeedListFragment extends ListFragment implements AdapterView.OnItem
                     title = jObject.getJSONObject("title").getString("rendered");
                     if(titles.contains(title)) continue; // Skips building article if duplicate
                     author ="Jody Ryan";
-                    description = jObject.getJSONObject("content").getString("rendered");
+                    description = android.text.Html.fromHtml(jObject.getJSONObject("content").getString("rendered"));
                     url = jObject.getString("link");
                     JSONObject embedded = jObject.getJSONObject("_embedded");
                     urlToImage = embedded.has("wp:featuredmedia") ?
@@ -152,12 +157,11 @@ public class FeedListFragment extends ListFragment implements AdapterView.OnItem
                                 imageUtility.grabImage(filename) :
                                 imageUtility.downloadImage(filename, urlToImage);
                         if (!imageUtility.fileExists(filename)) imageUtility.saveImage(filename, image);
-                        titles.add(title);
                         adapter.getArticles().add(new Article(title, author, description, url, urlToImage, image));
                     } else {
-                        titles.add(title);
                         adapter.getArticles().add(new Article(title, author, description, url));
                     }
+                    titles.add(title);
                     publishProgress(i*10);
                 }
             }catch (JSONException e){e.printStackTrace();}

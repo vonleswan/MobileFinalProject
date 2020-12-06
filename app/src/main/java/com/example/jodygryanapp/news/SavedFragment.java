@@ -9,6 +9,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -110,7 +112,7 @@ public class SavedFragment extends ListFragment implements AdapterView.OnItemCli
                 long id = results.getLong(idColIndex);
                 String title = results.getString(titleColIndex);
                 String author = results.getString(authorColIndex);
-                String description = results.getString(descriptionColIndex);
+                Spanned description = Html.fromHtml(results.getString(descriptionColIndex));
                 String url = results.getString(urlColIndex);
                 String urlToImage = results.getString(urlToImageColIndex);
 
