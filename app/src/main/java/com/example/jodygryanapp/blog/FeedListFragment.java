@@ -1,4 +1,4 @@
-package com.example.jodygryanapp.news;
+package com.example.jodygryanapp.blog;
 
 
 import android.app.Activity;
@@ -70,9 +70,9 @@ public class FeedListFragment extends ListFragment implements AdapterView.OnItem
     }
 
     public void updateList(String in){
-        this.adapter = new FeedListAdapter(getContext(), new ArrayList<>());
-        setListAdapter(adapter);
-        new Requests().execute(search);
+        this.adapter.getArticles().removeIf(article -> !article.getTitle().contains(in));
+        setListAdapter(this.adapter);
+        notifyChange();
     }
 
     private void notifyChange(){
@@ -164,6 +164,7 @@ public class FeedListFragment extends ListFragment implements AdapterView.OnItem
                     titles.add(title);
                     publishProgress(i*10);
                 }
+                publishProgress(100);
             }catch (JSONException e){e.printStackTrace();}
             notifyChange();
         }

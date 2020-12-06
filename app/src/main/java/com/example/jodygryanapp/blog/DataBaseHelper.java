@@ -1,4 +1,4 @@
-package com.example.jodygryanapp.news;
+package com.example.jodygryanapp.blog;
 
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;

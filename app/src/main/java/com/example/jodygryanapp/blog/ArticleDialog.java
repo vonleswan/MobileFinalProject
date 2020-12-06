@@ -1,4 +1,4 @@
-package com.example.jodygryanapp.news;
+package com.example.jodygryanapp.blog;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
 import android.net.Uri;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
@@ -29,6 +28,7 @@ public class ArticleDialog{
         dialog.setContentView(R.layout.article_dialog);
         dialog.getWindow()
                 .setLayout((int) (getScreenWidth(activity) * .9), ViewGroup.LayoutParams.WRAP_CONTENT);
+
 
         TextView title = dialog.findViewById(R.id.dialog_title);
         title.setText(article.getTitle());

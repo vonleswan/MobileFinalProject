@@ -2,6 +2,7 @@ package com.example.jodygryanapp;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,13 +13,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.example.jodygryanapp.news.FeedListFragment;
-import com.example.jodygryanapp.news.SavedFragment;
+import com.example.jodygryanapp.blog.FeedListFragment;
+import com.example.jodygryanapp.blog.SavedFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 
-public class NewsActivity extends AppCompatActivity{
+public class BlogActivity extends AppCompatActivity{
     private String query = "";
     private FeedListFragment feedFrag;
 
@@ -33,7 +36,11 @@ public class NewsActivity extends AppCompatActivity{
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setTitle(null);
+        startFeedList();
 
+    }
+
+    public void startFeedList(){
         //Start Feed Fragment
         feedFrag = new FeedListFragment();
         getSupportFragmentManager()
@@ -57,10 +64,6 @@ public class NewsActivity extends AppCompatActivity{
                 showDialog();
                 break;
 
-            case R.id.action_toast:
-                Toast.makeText(this, "You like toast huh?", Toast.LENGTH_SHORT).show();
-                break;
-
             case R.id.action_saved:
                 //Start Feed Fragment
                 SavedFragment saveFrag = new SavedFragment();
@@ -70,13 +73,6 @@ public class NewsActivity extends AppCompatActivity{
                         .addToBackStack(null) //make the back button undo the transaction
                         .commit(); //actually load the fragment.
                 break;
-
-            case R.id.action_snackbar:
-                Snackbar sb = Snackbar.make(findViewById(R.id.toolbar), "Go Back?", Snackbar.LENGTH_LONG)
-                        .setAction("Exit", e -> finish());
-                sb.show();
-                break;
-
 
             default:
                 // If we got here, the user's action was not recognized.
@@ -101,8 +97,15 @@ public class NewsActivity extends AppCompatActivity{
         builder.create().show();
     }
 
-    public void saved(View view){
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(getIntent());
+            overridePendingTransition(0, 0);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.jodygryanapp.news;
+package com.example.jodygryanapp.blog;
 
 import androidx.fragment.app.ListFragment;
 
@@ -42,7 +42,7 @@ public class SavedFragment extends ListFragment implements AdapterView.OnItemCli
         dataBaseHelper = new DataBaseHelper(getActivity());
         db = dataBaseHelper.getWritableDatabase();
 
-        adapter = new SavedAdapter(getContext(),new ArrayList<Article>(), db);
+        adapter = new SavedAdapter(getContext(), new ArrayList<>(), db);
         setListAdapter(adapter);
 
         progressBar = getActivity().findViewById(R.id.progress);
@@ -106,6 +106,7 @@ public class SavedFragment extends ListFragment implements AdapterView.OnItemCli
             int urlToImageColIndex = results.getColumnIndex(DataBaseHelper.COL_URLTOIMAGE);
             //iterate over the results, return true if there is a next item:
             int i =0;
+            results.getCount();
             results.moveToFirst();
             while(results.moveToNext())
             {
@@ -116,18 +117,23 @@ public class SavedFragment extends ListFragment implements AdapterView.OnItemCli
                 String url = results.getString(urlColIndex);
                 String urlToImage = results.getString(urlToImageColIndex);
 
-                ImageUtility imageUtility = new ImageUtility(getActivity());
-                String fname = (author + title.substring(0,5)).replaceAll("/","");
-                Bitmap image =  imageUtility.fileExists(fname) ?
-                                imageUtility.grabImage(fname) :
-                                imageUtility.downloadImage(fname,urlToImage);
-                if(image != null){
-                    //add the new Article to the array list:
+                if(urlToImage != null) {
+                    //  Image handling
+                    ImageUtility imageUtility = new ImageUtility(getActivity());
+                    // if no featured media than use the last image downloaded
+                    String filename = urlToImage != null ? (author + title.substring(0,5)).replaceAll("/","") : "Jody RyanWhile";
+                    Bitmap image = imageUtility.fileExists(filename) ?
+                            imageUtility.grabImage(filename) :
+                            imageUtility.downloadImage(filename, urlToImage);
+                    if (!imageUtility.fileExists(filename)) imageUtility.saveImage(filename, image);
                     adapter.getArticles().add(new Article(title, author, description, url, urlToImage, image));
-                    i++;
-                    publishProgress(i*10);
+                } else {
+                    adapter.getArticles().add(new Article(title, author, description, url));
                 }
+                publishProgress(i*10);
+                i++;
             }
+            publishProgress(100);
             notifyChange();
         }
     }

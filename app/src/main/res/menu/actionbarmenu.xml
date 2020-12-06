@@ -10,17 +10,6 @@
         app:showAsAction="always"
         android:title="@string/search"/>
 
-    <!-- Toast -->
-    <item android:id="@+id/action_toast"
-        android:title="@string/toast"
-        android:icon="@drawable/toast"
-        app:showAsAction="always"/>
-
-    <item android:id="@+id/action_snackbar"
-        android:title="@string/Snack"
-        android:icon="@drawable/snack"
-        app:showAsAction="always"/>
-
 
     <!-- Saved Articles-->
     <item android:id="@+id/action_saved"

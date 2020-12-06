@@ -1,4 +1,4 @@
-package com.example.jodygryanapp.news;
+package com.example.jodygryanapp.blog;
 
 import android.graphics.Bitmap;
 import android.text.Spanned;
