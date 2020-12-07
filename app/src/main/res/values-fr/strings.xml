@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MobileFinalProject</string>
+    <string name="app_name">JodyGRyanBlog</string>
     <string name="news">Nouvelles</string>
     <string name="currencies">Devise</string>
     <string name="recipes">Recettes</string>
